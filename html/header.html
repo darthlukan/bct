@@ -1,0 +1,54 @@
+{{ define "header"}}
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Person">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+
+        <title>Brian C. Tomlinson</title>
+
+        <meta itemprop="name" content="Brian C. Tomlinson">
+        <meta itemprop="description" content="My personal playground.  A place where I share thoughts, ideas, projects, and other fun things that I'm working on.">
+        <meta itemprop="image" content="/img/icon.png" >
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="shortcut icon" href="/img/icon.png" />
+        <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+        <script type="text/javascript">
+            var browser = navigator.appName;
+            var upgrade = "http://www.google.com/chrome"
+            var message = "You are being redirected to a page that will allow you to upgrade to a modern browser." +
+                "Sadly, even Internet Explorer 9+ does not render this site properly." +
+                "Clicking 'Okay' will initiate the redirect.";
+
+            if (browser == "Microsoft Internet Explorer") {
+                alert(message);
+                window.location = upgrade;
+            }
+        </script>
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+            _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+            _gaq.push(['_setAccount', 'UA-38788717-1']);
+            _gaq.push(['_setDomainName', 'brianctomlinson.com']);
+            _gaq.push(['_setAllowLinker', true]);
+            _gaq.push(['_trackPageview']);
+            
+            (function() {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+                
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    </head>
+    <body>
+{{ end }}
