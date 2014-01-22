@@ -15,6 +15,47 @@ body {
     margin-right: auto;
 }
 
+.container {
+    width: 90%;
+    height: 750px;
+    padding: 1%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-container {
+    width: 90%;
+    height: 750px;
+    padding: 1%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card {
+    border: 1px solid #BDBDBD;
+    border-radius: 5px;
+    width: 325px;
+    height: 325px;
+    padding: 1%;
+    margin: 1%;
+}
+
+.card#big {
+    width: 700px;
+    height: 325px;
+    padding: 1%;
+    margin: 1%;
+    float: left;
+}
+
+.card#left {
+    float: left;
+}
+
+.card#right {
+    float: right;
+}
+
 .navbar {
     height: 40px;
     width: 100%;
