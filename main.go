@@ -29,16 +29,19 @@ func indexHandler(writer http.ResponseWriter, request *http.Request) {
     }
 }
 
-var projectRoot = path.Join(os.Getenv("GOPATH"), "src", "github.com", "darthlukan", "bct")
-
-var templates = template.Must(template.ParseGlob(projectRoot + "/html/*"))
-
-var myMux = http.NewServeMux()
+var (
+    projectRoot string
+    goPath      = os.Getenv("GOPATH")
+    templates   = template.Must(template.ParseGlob(projectRoot + "/html/*"))
+    myMux       = http.NewServeMux()
+)
 
 func main() {
 
-    if projectRoot == "" {
+    if goPath == "" {
         projectRoot = "."
+    } else {
+        projectRoot = path.Join(goPath, "src", "github.com", "darthlukan", "bct")
     }
 
     myMux.Handle("/", http.FileServer(http.Dir(projectRoot)))
