@@ -8,6 +8,7 @@ import (
     "log"
     "net/http"
     "os"
+    "path"
     "strings"
 )
 
@@ -28,12 +29,19 @@ func indexHandler(writer http.ResponseWriter, request *http.Request) {
     }
 }
 
-var templates = template.Must(template.ParseGlob("html/*"))
+var projectRoot = path.Join(os.Getenv("GOPATH"), "src", "github.com", "darthlukan", "bct")
+
+var templates = template.Must(template.ParseGlob(projectRoot + "/html/*"))
 
 var myMux = http.NewServeMux()
 
 func main() {
-    myMux.Handle("/", http.FileServer(http.Dir("./")))
+
+    if projectRoot == "" {
+        projectRoot = "."
+    }
+
+    myMux.Handle("/", http.FileServer(http.Dir(projectRoot)))
 
     http.HandleFunc("/", indexHandler)
 
