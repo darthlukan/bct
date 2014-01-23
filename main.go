@@ -31,8 +31,8 @@ func indexHandler(writer http.ResponseWriter, request *http.Request) {
 
 var (
     projectRoot string
+    templates   *template.Template
     goPath      = os.Getenv("GOPATH")
-    templates   = template.Must(template.ParseGlob(projectRoot + "/html/*"))
     myMux       = http.NewServeMux()
 )
 
@@ -43,6 +43,8 @@ func main() {
     } else {
         projectRoot = path.Join(goPath, "src", "github.com", "darthlukan", "bct")
     }
+
+    templates = template.Must(template.ParseGlob(projectRoot + "/html/*"))
 
     myMux.Handle("/", http.FileServer(http.Dir(projectRoot)))
 
