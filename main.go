@@ -69,10 +69,10 @@ func main() {
 		address = ":" + port
 	}
 	server := &http.Server{
-		Addr: address,
-		Handler: &LoggedHandler{goweb.DefaultHttpHandler()},
-		ReadTimeout: 10 * time.Second,
-		WriteTimeout: 10 * time.Second,
+		Addr:           address,
+		Handler:        &LoggedHandler{goweb.DefaultHttpHandler()},
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   10 * time.Second,
 		MaxHeaderBytes: 1 << 20,
 	}
 	listener, listenErr := net.Listen("tcp", address)
