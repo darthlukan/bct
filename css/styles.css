@@ -40,7 +40,7 @@ body {
 }
 
 .card:hover {
-    border: 1px solid lightblue;
+    border: 1px solid #FFFFFF;
     border-radius: 5px;
 }
 
@@ -87,4 +87,9 @@ body {
     color: #BDBDBD;
     border: 1px solid #5E5E5E;
     font-weight: bold;
+}
+
+.nav-btns button:hover {
+    background: #5E5E5E;
+    color: #000000;
 }
