@@ -12,7 +12,7 @@ $(function () {
         });
     }
 
-    function notify(event) {
+    function render(event) {
         var section = event.target.id + ".html";
 
         $.get("../html/" + section, function(data) {
@@ -27,14 +27,21 @@ $(function () {
 
     defaultContent();
 
-    $("#home").on("click", event, notify);
-    $("#projects").on("click", event, notify);
-    $("#social").on("click", event, notify);
-    $("#random").on("click", event, notify);
+    $("#home").on("click", event, render);
+    $("#projects").on("click", event, render);
+    $("#social").on("click", event, render);
+    $("#random").on("click", event, render);
 
     $("#one").fancybox({
+        afterClose: function () {
+            $("#one").show();
+        },
         openEffect: 'elastic',
         closeEffect: 'elastic',
+        width: "70%",
+        height: "70%",
+        maxWidth: "880",
+        maxHeight: "600",
         helpers: {
             overlay: {
                 css: {
@@ -45,8 +52,15 @@ $(function () {
     });
 
     $("#two").fancybox({
+        afterClose: function () {
+            $("#two").show();
+        },
         openEffect: 'elastic',
         closeEffect: 'elastic',
+        width: "70%",
+        height: "70%",
+        maxWidth: "880",
+        maxHeight: "600",
         helpers: {
             overlay: {
                 css: {
@@ -57,8 +71,15 @@ $(function () {
     });
 
     $("#three").fancybox({
+        afterClose: function () {
+            $("#three").show();
+        },
         openEffect: 'elastic',
         closeEffect: 'elastic',
+        width: "70%",
+        height: "70%",
+        maxWidth: "880",
+        maxHeight: "600",
         helpers: {
             overlay: {
                 css: {
@@ -69,8 +90,15 @@ $(function () {
     });
 
     $("#four").fancybox({
+        afterClose: function () {
+            $("#four").show();
+        },
         openEffect: 'elastic',
         closeEffect: 'elastic',
+        width: "70%",
+        height: "70%",
+        maxWidth: "880",
+        maxHeight: "600",
         helpers: {
             overlay: {
                 css: {
@@ -81,8 +109,15 @@ $(function () {
     });
 
     $("#big").fancybox({
+        afterClose: function () {
+            $("#big").show();
+        },
         openEffect: 'elastic',
         closeEffect: 'elastic',
+        width: "70%",
+        height: "70%",
+        maxWidth: "880",
+        maxHeight: "600",
         helpers: {
             overlay: {
                 css: {
