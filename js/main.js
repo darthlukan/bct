@@ -31,4 +31,64 @@ $(function () {
     $("#projects").on("click", event, notify);
     $("#social").on("click", event, notify);
     $("#random").on("click", event, notify);
+
+    $("#one").fancybox({
+        openEffect: 'elastic',
+        closeEffect: 'elastic',
+        helpers: {
+            overlay: {
+                css: {
+                    'background': 'rgba(0, 0, 0, 0.8)'
+                }
+            }
+        }
+    });
+
+    $("#two").fancybox({
+        openEffect: 'elastic',
+        closeEffect: 'elastic',
+        helpers: {
+            overlay: {
+                css: {
+                    'background': 'rgba(0, 0, 0, 0.8)'
+                }
+            }
+        }
+    });
+
+    $("#three").fancybox({
+        openEffect: 'elastic',
+        closeEffect: 'elastic',
+        helpers: {
+            overlay: {
+                css: {
+                    'background': 'rgba(0, 0, 0, 0.8)'
+                }
+            }
+        }
+    });
+
+    $("#four").fancybox({
+        openEffect: 'elastic',
+        closeEffect: 'elastic',
+        helpers: {
+            overlay: {
+                css: {
+                    'background': 'rgba(0, 0, 0, 0.8)'
+                }
+            }
+        }
+    });
+
+    $("#big").fancybox({
+        openEffect: 'elastic',
+        closeEffect: 'elastic',
+        helpers: {
+            overlay: {
+                css: {
+                    'background': 'rgba(0, 0, 0, 0.8)'
+                }
+            }
+        }
+    });
 });
