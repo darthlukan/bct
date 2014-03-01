@@ -15,6 +15,15 @@ import (
 	"time"
 )
 
+type LoggedHandler struct {
+	baseHandler http.Handler
+}
+
+func (handler *LoggedHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	go log.Printf("%s Request for %s from %s", r.Method, r.RequestURI, r.RemoteAddr)
+	handler.baseHandler.ServeHTTP(w, r)
+}
+
 func handleTemplate(ctx context.Context, template string) error {
 	if err := templates.ExecuteTemplate(ctx.HttpResponseWriter(), template, ctx.HttpRequest()); err != nil {
 		messages.AddErrorMessage("Could not load template " + template + ": " + err.Error())
@@ -61,7 +70,7 @@ func main() {
 	}
 	server := &http.Server{
 		Addr:           address,
-		Handler:        goweb.DefaultHttpHandler(),
+		Handler:        &LoggedHandler{goweb.DefaultHttpHandler()},
 		ReadTimeout:    10 * time.Second,
 		WriteTimeout:   10 * time.Second,
 		MaxHeaderBytes: 1 << 20,
