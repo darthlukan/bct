@@ -17,11 +17,12 @@ $(function () {
 
         $.get("../html/" + section, function(data) {
             $(".container").hide(1000, "linear", function() {
-                $(".container").fadeOut(1000).fadeIn(2000);
-                $(".container").html(data);
+                $(".container")
+                    .fadeOut(1000)
+                    .fadeIn(2000)
+                    .html(data);
             });
-            
-        }); 
+        });
     }
 
     defaultContent();

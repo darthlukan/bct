@@ -1,6 +1,5 @@
 body {
-    background: url("/img/dark-grey-tile.png") repeat;
-    background-attachment: fixed;
+    background: url("/img/dark-grey-tile.png") repeat fixed;
     font: normal 16px Roboto,arial,sans-serif;
 }
 
@@ -9,8 +8,7 @@ body {
     height: 800px;
     background: rgba(0, 0, 0, 0.6);
     color: #BDBDBD;
-    padding: 1%;
-    padding-top: 40px;
+    padding: 40px 1% 1%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -38,6 +36,12 @@ body {
     height: 325px;
     padding: 1%;
     margin: 1%;
+    overflow: hidden
+}
+
+.card:hover {
+    border: 1px solid lightblue;
+    border-radius: 5px;
 }
 
 .card#big {
@@ -48,11 +52,11 @@ body {
     float: left;
 }
 
-.card#left {
+.left {
     float: left;
 }
 
-.card#right {
+.right {
     float: right;
 }
 

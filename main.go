@@ -3,13 +3,13 @@
 package main
 
 import (
-    "github.com/gorilla/handlers"
-    "html/template"
-    "log"
-    "net/http"
-    "os"
-    "path"
-    "strings"
+	"github.com/gorilla/handlers"
+	"html/template"
+	"log"
+	"net/http"
+	"os"
+	"path"
+	"strings"
 )
 
 // IndexHandler checks if the URL.Path contains a dot (.) as in the case
@@ -18,37 +18,39 @@ import (
 // the index template.
 func indexHandler(writer http.ResponseWriter, request *http.Request) {
 
-    if strings.Contains(request.URL.Path, ".") {
-        myMux.ServeHTTP(writer, request)
-    } else {
-        err := templates.ExecuteTemplate(writer, "index.html", request)
+	if strings.Contains(request.URL.Path, ".") {
+		myMux.ServeHTTP(writer, request)
+	} else {
+		err := templates.ExecuteTemplate(writer, "index.html", request)
 
-        if err != nil {
-            http.Error(writer, err.Error(), http.StatusInternalServerError)
-        }
-    }
+		if err != nil {
+			http.Error(writer, err.Error(), http.StatusInternalServerError)
+		}
+	}
 }
 
 var (
-    projectRoot string
-    templates   *template.Template
-    goPath      = os.Getenv("GOPATH")
-    myMux       = http.NewServeMux()
+	projectRoot string
+	templates   *template.Template
+	goPath      = os.Getenv("GOPATH")
+	myMux       = http.NewServeMux()
 )
 
 func main() {
+	log.Println("Starting server...")
 
-    if goPath == "" {
-        projectRoot = "."
-    } else {
-        projectRoot = path.Join(goPath, "src", "github.com", "darthlukan", "bct")
-    }
+	if goPath == "" {
+		projectRoot = "."
+	} else {
+		projectRoot = path.Join(goPath, "src", "github.com", "darthlukan", "bct")
+	}
 
-    templates = template.Must(template.ParseGlob(projectRoot + "/html/*"))
+	templates = template.Must(template.ParseGlob(projectRoot + "/html/*"))
 
-    myMux.Handle("/", http.FileServer(http.Dir(projectRoot)))
+	myMux.Handle("/", http.FileServer(http.Dir(projectRoot)))
 
-    http.HandleFunc("/", indexHandler)
+	http.HandleFunc("/", indexHandler)
 
-    log.Println(http.ListenAndServe(":8080", handlers.LoggingHandler(os.Stdout, http.DefaultServeMux)))
+	log.Println("Server loaded, check localhost:8080")
+	log.Println(http.ListenAndServe(":8080", handlers.LoggingHandler(os.Stdout, http.DefaultServeMux)))
 }
