@@ -3,6 +3,7 @@
 package main
 
 import (
+	//"github.com/gorilla/handlers"
 	"github.com/Radiobox/web_responders"
 	"github.com/stretchr/goweb"
 	"github.com/stretchr/goweb/context"
@@ -28,6 +29,10 @@ func htmlFileHandler(ctx context.Context) error {
 	return handleTemplate(ctx, template)
 }
 
+// IndexHandler checks if the URL.Path contains a dot (.) as in the case
+// of filetypes in the URL.  In this case, it uses a different Mux
+// to handle such requests, else it uses the default Mux and executes
+// the index template.
 func indexHandler(ctx context.Context) error {
 	return handleTemplate(ctx, "index.html")
 }
@@ -37,6 +42,7 @@ var (
 	templates   *template.Template
 	goPath      = os.Getenv("GOPATH")
 	messages    = web_responders.NewMessageMap()
+	//myMux       = http.NewServeMux()
 )
 
 func main() {
@@ -53,6 +59,11 @@ func main() {
 	goweb.Map("/html/***", htmlFileHandler)
 	goweb.MapStatic("/css", path.Join(projectRoot, "css"))
 	goweb.MapStatic("/js", path.Join(projectRoot, "js"))
+	goweb.MapStatic("/img", path.Join(projectRoot, "img"))
+
+	//myMux.Handle("/", http.FileServer(http.Dir(projectRoot)))
+
+	//http.HandleFunc("/", indexHandler)
 
 	address := ":8080"
 	if port := os.Getenv("PORT"); port != "" {
