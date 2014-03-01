@@ -3,37 +3,46 @@
 package main
 
 import (
-	"github.com/gorilla/handlers"
+	//"github.com/gorilla/handlers"
+	"github.com/stretchr/goweb"
+	"github.com/stretchr/goweb/context"
+	"github.com/Radiobox/web_responders"
 	"html/template"
 	"log"
+	"net"
 	"net/http"
 	"os"
 	"path"
-	"strings"
+	"time"
 )
+
+func handleTemplate(ctx context.Context, template string) error {
+	if err := templates.ExecuteTemplate(ctx.HttpResponseWriter(), template, ctx.HttpRequest()); err != nil {
+		messages.AddErrorMessage("Could not load template " + template + ": " + err.Error())
+		return goweb.Respond.With(ctx, http.StatusInternalServerError, []byte(err.Error()))
+	}
+	return nil
+}
+
+func htmlFileHandler(ctx context.Context) error {
+	template := path.Join(ctx.Path().Segments()[1:]...) + ctx.FileExtension()
+	return handleTemplate(ctx, template)
+}
 
 // IndexHandler checks if the URL.Path contains a dot (.) as in the case
 // of filetypes in the URL.  In this case, it uses a different Mux
 // to handle such requests, else it uses the default Mux and executes
 // the index template.
-func indexHandler(writer http.ResponseWriter, request *http.Request) {
-
-	if strings.Contains(request.URL.Path, ".") {
-		myMux.ServeHTTP(writer, request)
-	} else {
-		err := templates.ExecuteTemplate(writer, "index.html", request)
-
-		if err != nil {
-			http.Error(writer, err.Error(), http.StatusInternalServerError)
-		}
-	}
+func indexHandler(ctx context.Context) error {
+	return handleTemplate(ctx, "index.html")
 }
 
 var (
 	projectRoot string
 	templates   *template.Template
 	goPath      = os.Getenv("GOPATH")
-	myMux       = http.NewServeMux()
+	messages    = web_responders.NewMessageMap()
+	//myMux       = http.NewServeMux()
 )
 
 func main() {
@@ -46,11 +55,30 @@ func main() {
 	}
 
 	templates = template.Must(template.ParseGlob(projectRoot + "/html/*"))
+	goweb.Map("/", indexHandler)
+	goweb.Map("/html/***", htmlFileHandler)
+	goweb.MapStatic("/css", path.Join(projectRoot, "css"))
+	goweb.MapStatic("/js", path.Join(projectRoot, "js"))
 
-	myMux.Handle("/", http.FileServer(http.Dir(projectRoot)))
+	//myMux.Handle("/", http.FileServer(http.Dir(projectRoot)))
 
-	http.HandleFunc("/", indexHandler)
+	//http.HandleFunc("/", indexHandler)
 
-	log.Println("Server loaded, check localhost:8080")
-	log.Println(http.ListenAndServe(":8080", handlers.LoggingHandler(os.Stdout, http.DefaultServeMux)))
+	address := ":8080"
+	if port := os.Getenv("PORT"); port != "" {
+		address = ":" + port
+	}
+	server := &http.Server{
+		Addr: address,
+		Handler: goweb.DefaultHttpHandler(),
+		ReadTimeout: 10 * time.Second,
+		WriteTimeout: 10 * time.Second,
+		MaxHeaderBytes: 1 << 20,
+	}
+	listener, listenErr := net.Listen("tcp", address)
+	if listenErr != nil {
+		log.Panicf("Could not listen for TCP on %s: %s", address, listenErr)
+	}
+	log.Println("Server loaded, check localhost" + address)
+	server.Serve(listener)
 }
