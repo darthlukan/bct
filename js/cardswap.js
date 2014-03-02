@@ -2,10 +2,10 @@ $(function() {
 	function hotSwap(event) {
 		var target = event.currentTarget;
 		$(".card-container").find("div").each(function(i, elem) {
-			$(elem).hide(1000);
+			$(elem).toggle(1000, "linear");
 		});
 		$(target)
-			.addClass("expand")
+			.toggleClass("expand")
 			.show(1000);
 	}
 	$(".card-container>div").on("click", event, hotSwap);
