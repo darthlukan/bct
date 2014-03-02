@@ -39,6 +39,26 @@ body {
     overflow: hidden;
 }
 
+.expand {
+    border: 1px solid #BDBDBD;
+    border-radius: 5px;
+    width: 89%;
+    height: 80%;
+    padding: 1%;
+    margin: 1%;
+    overflow: scroll;
+}
+
+.expand#big {
+    border: 1px solid #BDBDBD;
+    border-radius: 5px;
+    width: 89% !important;
+    height: 80% !important;
+    padding: 1%;
+    margin: 1%;
+    overflow: scroll;
+}
+
 .card:hover {
     border: 1px solid #FFFFFF;
     border-radius: 5px;

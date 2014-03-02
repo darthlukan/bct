@@ -3,15 +3,19 @@
 package main
 
 import (
+	"bufio"
+	"fmt"
 	"github.com/Radiobox/web_responders"
 	"github.com/stretchr/goweb"
 	"github.com/stretchr/goweb/context"
+	"github.com/stretchr/objx"
 	"html/template"
 	"log"
 	"net"
 	"net/http"
 	"os"
 	"path"
+	"strings"
 	"time"
 )
 
@@ -24,8 +28,49 @@ func (handler *LoggedHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 	handler.baseHandler.ServeHTTP(w, r)
 }
 
+func googlePlusPosts() {
+	log.Println("Called googlePlusPosts")
+}
+
+func readFile(path string) string {
+	var staticBase string = "static_content"
+	path = fmt.Sprintf("%v/%v", staticBase, path)
+	file, err := os.Open(path)
+
+	if err != nil {
+		return err.Error()
+	}
+
+	defer file.Close()
+
+	var lines []string
+	scanner := bufio.NewScanner(file)
+
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+	var text string
+	text = strings.Join(lines, "\n")
+
+	return text
+}
+
+func grabStaticContent(content objx.Map) objx.Map {
+	content.Set("home.one", template.HTML(readFile("home_one.txt")))
+	return content
+}
+
+func loadContent() objx.Map {
+	// TODO: Get all content types (google, github, etc)
+	log.Println("Called loadContent")
+	content = grabStaticContent(content)
+	googlePlusPosts()
+	return content
+}
+
 func handleTemplate(ctx context.Context, template string) error {
-	if err := templates.ExecuteTemplate(ctx.HttpResponseWriter(), template, ctx.HttpRequest()); err != nil {
+	content = loadContent()
+	if err := templates.ExecuteTemplate(ctx.HttpResponseWriter(), template, content); err != nil {
 		messages.AddErrorMessage("Could not load template " + template + ": " + err.Error())
 		return goweb.Respond.With(ctx, http.StatusInternalServerError, []byte(err.Error()))
 	}
@@ -46,6 +91,36 @@ var (
 	templates   *template.Template
 	goPath      = os.Getenv("GOPATH")
 	messages    = web_responders.NewMessageMap()
+	content     = objx.Map{
+		"home": objx.Map{
+			"one":   "",
+			"two":   "",
+			"three": "",
+			"four":  "",
+			"big":   "",
+		},
+		"projects": objx.Map{
+			"one":   "",
+			"two":   "",
+			"three": "",
+			"four":  "",
+			"big":   "",
+		},
+		"social": objx.Map{
+			"one":   "",
+			"two":   "",
+			"three": "",
+			"four":  "",
+			"big":   "",
+		},
+		"random": objx.Map{
+			"one":   "",
+			"two":   "",
+			"three": "",
+			"four":  "",
+			"big":   "",
+		},
+	}
 )
 
 func main() {
