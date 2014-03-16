@@ -113,3 +113,10 @@ body {
     background: #5E5E5E;
     color: #000000;
 }
+
+.footer {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    color: #BDBDBD;
+}

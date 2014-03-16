@@ -34,7 +34,7 @@ func googlePlusPosts() {
 
 func readFile(path string) string {
 	var staticBase string = "static_content"
-	path = fmt.Sprintf("%v/%v", staticBase, path)
+	path = fmt.Sprintf("%v/%v/%v", projectRoot, staticBase, path)
 	file, err := os.Open(path)
 
 	if err != nil {
@@ -56,7 +56,8 @@ func readFile(path string) string {
 }
 
 func grabStaticContent(content objx.Map) objx.Map {
-	content.Set("home.one", template.HTML(readFile("home_one.txt")))
+	content.Set("home.one", template.HTML(readFile("home_one.html")))
+	content.Set("home.two", template.HTML(readFile("home_two.html")))
 	return content
 }
 
@@ -138,6 +139,7 @@ func main() {
 	goweb.MapStatic("/css", path.Join(projectRoot, "css"))
 	goweb.MapStatic("/js", path.Join(projectRoot, "js"))
 	goweb.MapStatic("/img", path.Join(projectRoot, "img"))
+	goweb.MapStatic("/static_content", path.Join(projectRoot, "static_content"))
 
 	address := ":8080"
 	if port := os.Getenv("PORT"); port != "" {
