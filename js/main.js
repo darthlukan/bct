@@ -13,6 +13,7 @@ $(function () {
     }
 
     function render(event) {
+		event.preventDefault();
         var section = event.target.id + ".html";
 
         $.get("../html/" + section, function(data) {

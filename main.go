@@ -58,6 +58,7 @@ func readFile(path string) string {
 func grabStaticContent(content objx.Map) objx.Map {
 	content.Set("home.one", template.HTML(readFile("home_one.html")))
 	content.Set("home.two", template.HTML(readFile("home_two.html")))
+	content.Set("home.three", template.HTML(readFile("home_three.html")))
 	return content
 }
 
@@ -136,6 +137,7 @@ func main() {
 	templates = template.Must(template.ParseGlob(projectRoot + "/html/*"))
 	goweb.Map("/", indexHandler)
 	goweb.Map("/html/***", htmlFileHandler)
+	goweb.MapStatic("/video", path.Join(projectRoot, "video"))
 	goweb.MapStatic("/css", path.Join(projectRoot, "css"))
 	goweb.MapStatic("/js", path.Join(projectRoot, "js"))
 	goweb.MapStatic("/img", path.Join(projectRoot, "img"))
