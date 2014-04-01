@@ -59,6 +59,8 @@ func grabStaticContent(content objx.Map) objx.Map {
 	content.Set("home.one", template.HTML(readFile("home_one.html")))
 	content.Set("home.two", template.HTML(readFile("home_two.html")))
 	content.Set("home.three", template.HTML(readFile("home_three.html")))
+	content.Set("home.four", template.HTML(readFile("home_four.html")))
+	content.Set("home.big", template.HTML(readFile("home_big.html")))
 	return content
 }
 
