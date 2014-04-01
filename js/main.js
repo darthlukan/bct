@@ -33,8 +33,16 @@ $(function () {
 		alert("This section is under maintenance, check back later!");
     }
 
-    $("#home").on("click", event, render);
-    $("#projects").on("click", event, maintenance);
-    $("#social").on("click", event, maintenance);
-    $("#random").on("click", event, maintenance);
+    $("#home").click(function(event) {
+		render(event);
+	});
+    $("#projects").click(function(event) {
+		maintenance(event);
+	});
+    $("#social").click(function(event) {
+		 maintenance(event);
+	});
+    $("#random").click(function(event){
+		maintenance(event);
+	});
 });

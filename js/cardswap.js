@@ -32,11 +32,17 @@ $(function() {
 			} else {
 				$(elem).toggle(1000, "linear");
 			}
-			$(elem).on("click", event, hotSwap);
+			$(elem).click(function(event) {
+				hotSwap(event);
+			});
 		});
 		$("#close-card").toggle();
 	}
 
-	$(".card-container>div").on("click", event, hotSwap);
-	$("#close-card").on("click", event, closeCard);
+	$(".card-container>div").click(function(event) {
+		hotSwap(event);
+	});
+	$("#close-card").click(function(event) {
+		closeCard(event);
+	});
 });
