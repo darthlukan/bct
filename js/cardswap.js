@@ -1,5 +1,6 @@
 $(function() {
 	function hotSwap(event) {
+		event.preventDefault();
 
 		var target = event.currentTarget;
 		var parent = $(target).parent("div");
@@ -9,7 +10,7 @@ $(function() {
 		}
 
 		$(".card-container").find("div").each(function(i, elem) {
-			$(elem).toggle(1000, "linear");
+			$(elem).toggle(1000, "linear").off("click");
 		});
 
 		$(target)
@@ -18,17 +19,24 @@ $(function() {
 			.off("click");
 
 		$("#close-card").toggle();
-
-		if ($(target).hasClass("expand") === false) {
-			$(target).on("click", event, hotSwap);
-		}
 	}
 
 	function closeCard(event) {
-		hotSwap(event);
+		event.preventDefault();
+
+		$(".card-container").find("div").each(function(i, elem) {
+			if ($(elem).hasClass("expand")) {
+				$(elem)
+					.toggleClass("expand")
+					.show(1000);
+			} else {
+				$(elem).toggle(1000, "linear");
+			}
+			$(elem).on("click", event, hotSwap);
+		});
+		$("#close-card").toggle();
 	}
 
 	$(".card-container>div").on("click", event, hotSwap);
-	$("#close-card").on("click", event, hotSwap);
-	$("#close-card").toggle();
+	$("#close-card").on("click", event, closeCard);
 });

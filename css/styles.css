@@ -120,3 +120,22 @@ body {
     margin-right: auto;
     color: #BDBDBD;
 }
+
+#close-card {
+    width: 325px;
+    min-height: 28px;
+    padding-left: 10%;
+    padding-right: 10%;
+    background: #000000;
+    color: #BDBDBD;
+    border: 1px solid #5E5E5E;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+}
+
+#close-card:hover {
+    background: #5E5E5E;
+    color: #000000;
+}

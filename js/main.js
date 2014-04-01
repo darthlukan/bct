@@ -28,12 +28,13 @@ $(function () {
 
     defaultContent();
 
-    function eventCheck(event) {
-        console.log(event);
+    function maintenance(event) {
+        event.preventDefault();
+		alert("This section is under maintenance, check back later!");
     }
 
     $("#home").on("click", event, render);
-    $("#projects").on("click", event, render);
-    $("#social").on("click", event, render);
-    $("#random").on("click", event, render);
+    $("#projects").on("click", event, maintenance);
+    $("#social").on("click", event, maintenance);
+    $("#random").on("click", event, maintenance);
 });
