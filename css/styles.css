@@ -3,6 +3,18 @@ body {
     font: normal 16px Roboto,arial,sans-serif;
 }
 
+a:link {
+    color: #6370FF;
+}
+
+a:hover {
+    color: #7A4AFF;
+}
+
+a:visited {
+    color: #C57CCC;
+}
+
 .content {
     width: 75%;
     height: 800px;

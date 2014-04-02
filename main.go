@@ -145,7 +145,7 @@ func main() {
 	goweb.MapStatic("/img", path.Join(projectRoot, "img"))
 	goweb.MapStatic("/static_content", path.Join(projectRoot, "static_content"))
 
-	address := ":8080"
+	address := ":3000"
 	if port := os.Getenv("PORT"); port != "" {
 		address = ":" + port
 	}
