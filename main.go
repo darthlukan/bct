@@ -19,6 +19,58 @@ import (
 	"time"
 )
 
+var (
+	projectRoot string
+	templates   *template.Template
+	goPath      = os.Getenv("GOPATH")
+	messages    = web_responders.NewMessageMap()
+	content     = objx.Map{
+		"home": objx.Map{
+			"one":   "",
+			"two":   "",
+			"three": "",
+			"four":  "",
+			"big":   "",
+		},
+	}
+)
+
+func main() {
+	log.Println("Starting server...")
+
+	if goPath == "" {
+		projectRoot = "."
+	} else {
+		projectRoot = path.Join(goPath, "src", "github.com", "darthlukan", "bct")
+	}
+
+	templates = template.Must(template.ParseGlob(projectRoot + "/html/*"))
+	goweb.Map("/", indexHandler)
+	goweb.Map("/html/***", htmlFileHandler)
+	goweb.MapStatic("/css", path.Join(projectRoot, "css"))
+	goweb.MapStatic("/js", path.Join(projectRoot, "js"))
+	goweb.MapStatic("/img", path.Join(projectRoot, "img"))
+	goweb.MapStatic("/static_content", path.Join(projectRoot, "static_content"))
+
+	address := ":3000"
+	if port := os.Getenv("PORT"); port != "" {
+		address = ":" + port
+	}
+	server := &http.Server{
+		Addr:           address,
+		Handler:        &LoggedHandler{goweb.DefaultHttpHandler()},
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   10 * time.Second,
+		MaxHeaderBytes: 1 << 20,
+	}
+	listener, listenErr := net.Listen("tcp", address)
+	if listenErr != nil {
+		log.Panicf("Could not listen for TCP on %s: %s", address, listenErr)
+	}
+	log.Println("Server loaded, check localhost" + address)
+	server.Serve(listener)
+}
+
 type LoggedHandler struct {
 	baseHandler http.Handler
 }
@@ -28,10 +80,7 @@ func (handler *LoggedHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 	handler.baseHandler.ServeHTTP(w, r)
 }
 
-func googlePlusPosts() {
-	log.Println("Called googlePlusPosts")
-}
-
+// TODO: Do I really want this much I/O per request?
 func readFile(path string) string {
 	var staticBase string = "static_content"
 	path = fmt.Sprintf("%v/%v/%v", projectRoot, staticBase, path)
@@ -55,25 +104,8 @@ func readFile(path string) string {
 	return text
 }
 
-func grabStaticContent(content objx.Map) objx.Map {
-	content.Set("home.one", template.HTML(readFile("home_one.html")))
-	content.Set("home.two", template.HTML(readFile("home_two.html")))
-	content.Set("home.three", template.HTML(readFile("home_three.html")))
-	content.Set("home.four", template.HTML(readFile("home_four.html")))
-	content.Set("home.big", template.HTML(readFile("home_big.html")))
-	return content
-}
-
-func loadContent() objx.Map {
-	// TODO: Get all content types (google, github, etc)
-	log.Println("Called loadContent")
-	content = grabStaticContent(content)
-	googlePlusPosts()
-	return content
-}
-
 func handleTemplate(ctx context.Context, template string) error {
-	content = loadContent()
+	// TODO: Populate "content"
 	if err := templates.ExecuteTemplate(ctx.HttpResponseWriter(), template, content); err != nil {
 		messages.AddErrorMessage("Could not load template " + template + ": " + err.Error())
 		return goweb.Respond.With(ctx, http.StatusInternalServerError, []byte(err.Error()))
@@ -88,78 +120,4 @@ func htmlFileHandler(ctx context.Context) error {
 
 func indexHandler(ctx context.Context) error {
 	return handleTemplate(ctx, "index.html")
-}
-
-var (
-	projectRoot string
-	templates   *template.Template
-	goPath      = os.Getenv("GOPATH")
-	messages    = web_responders.NewMessageMap()
-	content     = objx.Map{
-		"home": objx.Map{
-			"one":   "",
-			"two":   "",
-			"three": "",
-			"four":  "",
-			"big":   "",
-		},
-		"projects": objx.Map{
-			"one":   "",
-			"two":   "",
-			"three": "",
-			"four":  "",
-			"big":   "",
-		},
-		"social": objx.Map{
-			"one":   "",
-			"two":   "",
-			"three": "",
-			"four":  "",
-			"big":   "",
-		},
-		"random": objx.Map{
-			"one":   "",
-			"two":   "",
-			"three": "",
-			"four":  "",
-			"big":   "",
-		},
-	}
-)
-
-func main() {
-	log.Println("Starting server...")
-
-	if goPath == "" {
-		projectRoot = "."
-	} else {
-		projectRoot = path.Join(goPath, "src", "github.com", "darthlukan", "bct")
-	}
-
-	templates = template.Must(template.ParseGlob(projectRoot + "/html/*"))
-	goweb.Map("/", indexHandler)
-	goweb.Map("/html/***", htmlFileHandler)
-	goweb.MapStatic("/video", path.Join(projectRoot, "video"))
-	goweb.MapStatic("/css", path.Join(projectRoot, "css"))
-	goweb.MapStatic("/js", path.Join(projectRoot, "js"))
-	goweb.MapStatic("/img", path.Join(projectRoot, "img"))
-	goweb.MapStatic("/static_content", path.Join(projectRoot, "static_content"))
-
-	address := ":3000"
-	if port := os.Getenv("PORT"); port != "" {
-		address = ":" + port
-	}
-	server := &http.Server{
-		Addr:           address,
-		Handler:        &LoggedHandler{goweb.DefaultHttpHandler()},
-		ReadTimeout:    10 * time.Second,
-		WriteTimeout:   10 * time.Second,
-		MaxHeaderBytes: 1 << 20,
-	}
-	listener, listenErr := net.Listen("tcp", address)
-	if listenErr != nil {
-		log.Panicf("Could not listen for TCP on %s: %s", address, listenErr)
-	}
-	log.Println("Server loaded, check localhost" + address)
-	server.Serve(listener)
 }
