@@ -25,73 +25,6 @@ a:visited {
     margin-right: auto;
 }
 
-.container {
-    width: 90%;
-    height: 750px;
-    padding: 1%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.card-container {
-    width: 90%;
-    height: 750px;
-    padding: 1%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.card {
-    border: 1px solid #BDBDBD;
-    border-radius: 5px;
-    width: 325px;
-    height: 325px;
-    padding: 1%;
-    margin: 1%;
-    overflow: hidden;
-}
-
-.expand {
-    border: 1px solid #BDBDBD;
-    border-radius: 5px;
-    width: 89%;
-    height: 80%;
-    padding: 1%;
-    margin: 1%;
-    overflow: scroll;
-}
-
-.expand#big {
-    border: 1px solid #BDBDBD;
-    border-radius: 5px;
-    width: 89% !important;
-    height: 80% !important;
-    padding: 1%;
-    margin: 1%;
-    overflow: scroll;
-}
-
-.card:hover {
-    border: 1px solid #FFFFFF;
-    border-radius: 5px;
-}
-
-.card#big {
-    width: 700px;
-    height: 325px;
-    padding: 1%;
-    margin: 1%;
-    float: left;
-}
-
-.left {
-    float: left;
-}
-
-.right {
-    float: right;
-}
-
 .navbar {
     height: 40px;
     width: 100%;
@@ -131,23 +64,4 @@ a:visited {
     margin-left: auto;
     margin-right: auto;
     color: #BDBDBD;
-}
-
-#close-card {
-    width: 325px;
-    min-height: 28px;
-    padding-left: 10%;
-    padding-right: 10%;
-    background: #000000;
-    color: #BDBDBD;
-    border: 1px solid #5E5E5E;
-    font-weight: bold;
-    margin-left: auto;
-    margin-right: auto;
-    display: none;
-}
-
-#close-card:hover {
-    background: #5E5E5E;
-    color: #000000;
 }
