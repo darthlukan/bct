@@ -9,8 +9,27 @@ import (
 
 func main() {
 	app := gin.Default()
+
+	// Static files
+	app.Static("/img", "./img")
+	app.Static("/js", "./js")
+	app.Static("/css", "./css")
+
+	// HTML + Templates
+	app.LoadHTMLGlob("templates/*")
+	app.LoadHTMLGlob("html/*")
+
+	// Routes
 	app.GET("/ping", pinger)
+	app.GET("/", index)
+
+	// Engage
 	app.Run(":3000")
+}
+
+func index(context *gin.Context) {
+	index := "index.html"
+	context.HTML(http.StatusOK, index, gin.H{})
 }
 
 func pinger(context *gin.Context) {
