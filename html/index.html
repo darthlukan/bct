@@ -1,4 +1,15 @@
-{{ template "header" }}
-{{ template "nav" }}
-{{ template "content" }}
-{{ template "footer" }}
+<html lang="en" itemscope itemtype="http://schema.org/Person">
+    <head>
+        {{ template "header" }}
+    </head>
+    <body>
+        {{ template "nav" }}
+        <div class="content">
+            {{ template "content" }}
+        </div>
+        <div class="footer">
+            {{ template "footer" }}           
+        </div>
+    </body>
+</html>
+
