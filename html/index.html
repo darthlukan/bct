@@ -1,4 +1,195 @@
-{{ template "header" }}
-{{ template "nav" }}
-{{ template "content" }}
-{{ template "footer" }}
+<!DOCTYPE HTML>
+<!--
+	Read Only by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Brian C. Tomlinson</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="My personal playground." />
+        <meta name="name" content="Brian C. Tomlinson" />
+        <meta name="image" content="/img/icon.png" />
+        <link rel="shortcut icon" href="/img/icon.png" />
+		
+        <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.scrollzer.min.js"></script>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-xlarge.css" />    
+		</noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+            _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+            _gaq.push(['_setAccount', 'UA-38788717-1']);
+            _gaq.push(['_setDomainName', 'brianctomlinson.com']);
+            _gaq.push(['_setAllowLinker', true]);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') +
+                    'stats.g.doubleclick.net/dc.js;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+
+	</head>
+	<body>
+		<div id="wrapper">
+
+			<!-- Header -->
+				<section id="header" class="skel-layers-fixed">
+					<header>
+						<span class="image avatar"><img src="img/me.jpg" alt="" /></span>
+						<h1 id="logo"><a href="#">Brian Tomlinson</a></h1>
+						<p>"We're all humans, act accordingly."</p>
+					</header>
+					<nav id="nav">
+						<ul>
+							<li><a href="#one" class="active">About</a></li>
+                            <li><a href="#two">Social</a></li>
+
+						<!-- 
+                            <li><a href="#three">A Few Accomplishments</a></li> 
+                        -->
+							<li><a href="#four">Contact</a></li>
+						</ul>
+					</nav>
+					<footer>
+						<ul class="icons">
+							<li><a href="https://twitter.com/DarthLukan" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="https://github.com/darthlukan" class="icon fa-github"><span class="label">Github</span></a></li>
+							<li><a href="mailto:darthlukan@gmail.com" class="icon fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+					</footer>
+				</section>
+
+			<!-- Main -->
+				<div id="main">
+
+					<!-- One -->
+						<section id="one">
+							<div class="container">
+								<header class="major">
+									<h2>About Me</h2>
+									<p>Sith, Linux Lover, Programmer, Freedom Fighter, Husband, Father. Not necessarily 
+                                    in that order.</p>
+								</header>
+
+								<p>I am a California native who's been living and working in Stavanger, Norway for the
+                                last two and a half years as an Integration Developer. Currently, I am seeking new
+                                opportunities in Software Development within Europe because the thought of not writing
+                                code for a living is depressing.</p>
+                                
+                                <p>I grew up on Linux, quite literally, and can't remember the last time I willingly
+                                used another operating system.  While there is definitely room for improvement, I enjoy
+                                the Open Source and FOSS communities and try to contribute as much as I can to both,
+                                whether it be through code or in helping new and seasoned users troubleshoot their
+                                problems in IRC.</p>
+
+                                <p>My wife and I met in High School, dated then, and have now been married for almost 14
+                                years.  We have two wonderful daughters who give us many reasons to smile everyday and
+                                some fish that keep us entertained when we're not gaming, watching movies, or enjoying a
+                                fragfest in various games.</p>
+							</div>
+						</section>
+
+					<!-- Two -->
+						<section id="two">
+							<div class="container">
+								<h3>Social</h3>
+								<p>It's not hard to find me online</p>
+								<ul class="feature-icons">
+                                    <li class="fa-github-alt"><a href="https://github.com/darthlukan">GitHub</a></li>
+                                    <li class="fa-google-plus"><a href="https://plus.google.com/+BrianTomlinson">Google +</a></li>
+                                    <li class="fa-linkedin-square"><a href="https://no.linkedin.com/in/brianctomlinson">LinkedIn</a></li>
+                                    <li class="fa-steam-square"><a href="http://steamcommunity.com/id/DarthLukan">Steam</a></li>
+								</ul>
+							</div>
+						</section>
+					<!-- Three -->
+                    <!--		<section id="three">
+							<div class="container">
+								<h3>A Few Accomplishments</h3>
+								<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer. Integer eu ante ornare amet commetus.</p>
+								<div class="features">
+									<article>
+										<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
+										<div class="inner">
+											<h4>Possibly broke spacetime</h4>
+											<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
+										</div>
+									</article>
+									<article>
+										<a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
+										<div class="inner">
+											<h4>Terraformed a small moon</h4>
+											<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
+										</div>
+									</article>
+									<article>
+										<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
+										<div class="inner">
+											<h4>Snapped dark matter in the wild</h4>
+											<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
+										</div>
+									</article>
+								</div>
+							</div>
+						</section>
+                    -->
+					<!-- Four -->
+						<section id="four">
+							<div class="container">
+								<h3>Contact Me</h3>
+								<form method="post" action="#">
+									<div class="row uniform">
+										<div class="6u 12u(xsmall)"><input type="text" name="name" id="name" placeholder="Name" /></div>
+										<div class="6u 12u(xsmall)"><input type="email" name="email" id="email" placeholder="Email" /></div>
+									</div>
+									<div class="row uniform">
+										<div class="12u"><input type="text" name="subject" id="subject" placeholder="Subject" /></div>
+									</div>
+									<div class="row uniform">
+										<div class="12u"><textarea name="message" id="message" placeholder="Message" rows="6"></textarea></div>
+									</div>
+									<div class="row uniform">
+										<div class="12u">
+											<ul class="actions">
+												<li><input type="submit" class="special" value="Send Message" /></li>
+												<li><input type="reset" value="Reset Form" /></li>
+											</ul>
+										</div>
+									</div>
+								</form>
+							</div>
+						</section>
+				</div>
+
+			<!-- Footer -->
+				<section id="footer">
+					<div class="container">
+						<ul class="copyright">
+							<li>&copy; Brian C. Tomlinson. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</div>
+				</section>
+
+		</div>
+	</body>
+</html>
