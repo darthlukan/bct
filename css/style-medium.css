@@ -27,7 +27,7 @@
 	}
 
 	#header {
-		background: none;
+		background: rgba(0,0,0,0.8);
 		bottom: auto;
 		left: auto;
 		position: relative;

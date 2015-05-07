@@ -229,7 +229,7 @@
 		appearance: none;
 		border-radius: 5px;
 		border: none;
-		border: solid 2px #e4e4e4;
+		border: solid 2px #5E5E5E;
 		color: inherit;
 		display: block;
 		outline: 0;
@@ -251,8 +251,8 @@
 		input[type="email"]:focus,
 		select:focus,
 		textarea:focus {
-			border-color: #4acaa8;
-		}
+			border-color: #5E5E5E; 
+        }
 
 	.select-wrapper {
 		text-decoration: none;
@@ -271,7 +271,7 @@
 		}
 
 		.select-wrapper:before {
-			color: #e4e4e4;
+			color: #5E5E5E;
 			display: block;
 			height: 2.75em;
 			line-height: 2.75em;
@@ -407,7 +407,7 @@
 
 	.box {
 		border-radius: 5px;
-		border: solid 2px #e4e4e4;
+		border: solid 2px #5E5E5E;
 		margin-bottom: 2.25em;
 		padding: 1.5em;
 	}

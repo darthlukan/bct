@@ -12,11 +12,11 @@ func main() {
 
 	// Static files
 	app.Static("/img", "./img")
+	app.Static("/fonts", "./fonts")
 	app.Static("/js", "./js")
 	app.Static("/css", "./css")
 
 	// HTML + Templates
-	app.LoadHTMLGlob("templates/*")
 	app.LoadHTMLGlob("html/*")
 
 	// Routes
