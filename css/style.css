@@ -1039,7 +1039,7 @@
 /* One */
 
 	#one:before {
-		background-image: url("../images/banner.jpg");
+        background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCc+Cgk8cmVjdCB4PSctMTAlJyB5PSctMTAlJyB3aWR0aD0nMTIwJScgaGVpZ2h0PScxMjAlJyBmaWxsPScjMzAzNDM4Jy8+Cgk8ZWxsaXBzZSBjeD0nNTAlJyBjeT0nNTUlJyByeD0nNDAlJyByeT0nNDAlJyBmaWxsPScjNjY2NjY2Jy8+Cgk8ZWxsaXBzZSBjeD0nNTAlJyBjeT0nNTAlJyByeD0nNDAlJyByeT0nNDAlJyBmaWxsPScjMTExMTExJy8+Cjwvc3ZnPg==');
 		background-position: top right;
 		background-repeat: no-repeat;
 		background-size: cover;
