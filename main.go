@@ -3,6 +3,7 @@
 package main
 
 import (
+	"github.com/darthlukan/bct/quotes"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -21,6 +22,7 @@ func main() {
 
 	// Routes
 	app.GET("/ping", pinger)
+	app.GET("/quotes", quoter)
 	app.GET("/", index)
 
 	// Engage
@@ -34,4 +36,13 @@ func index(context *gin.Context) {
 
 func pinger(context *gin.Context) {
 	context.JSON(http.StatusOK, gin.H{"status": "OK!", "data": "PONG!"})
+}
+
+func quoter(context *gin.Context) {
+	quote := quotes.RandomQuote()
+	if len(quote) > 0 {
+		context.JSON(http.StatusOK, gin.H{"status": http.StatusOK, "data": quote})
+	} else {
+		context.JSON(http.StatusInternalServerError, gin.H{"status": "Failed", "data": "Error, quote not found."})
+	}
 }
