@@ -62,10 +62,9 @@
 					<nav id="nav">
 						<ul>
 							<li><a href="#one" class="active">About</a></li>
-                            <li><a href="#two">Social</a></li>
-
-						<!-- 
-                            <li><a href="#three">A Few Accomplishments</a></li> 
+                            <li><a href="#two">Social</a></li> 
+                            <li><a href="#three">The Art of War: Quotes</a></li> 
+                        <!--
 							<li><a href="#four">Contact</a></li>
                         -->
 						</ul>
@@ -123,36 +122,40 @@
 							</div>
 						</section>
 					<!-- Three -->
-                    <!--		<section id="three">
+                        <section id="three">
 							<div class="container">
-								<h3>A Few Accomplishments</h3>
-								<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer. Integer eu ante ornare amet commetus.</p>
-								<div class="features">
-									<article>
-										<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
-										<div class="inner">
-											<h4>Possibly broke spacetime</h4>
-											<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
-										</div>
-									</article>
-									<article>
-										<a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
-										<div class="inner">
-											<h4>Terraformed a small moon</h4>
-											<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
-										</div>
-									</article>
-									<article>
-										<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
-										<div class="inner">
-											<h4>Snapped dark matter in the wild</h4>
-											<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
-										</div>
-									</article>
+                                <header class="major">
+								    <h3>The Art of War</h3>
+                                    <p>Quotes from The Art of War by Sun Tzu</p>
+                                </header>
+
+                                <div id="quotes" class="row uniform">
+                                
+                                </div>
+                                
+                                <div class="row uniform">
+									<div class="12u">
+										<ul class="actions">
+											<li><input id="quoter" type="button" class="special" value="Get Quote" /></li>
+										</ul>
+									</div>
 								</div>
+                                
+                                <script type="text/javascript">
+                                    (function () {
+                                        function getQuote() {
+                                            return $.getJSON('/quotes', function(data) {
+                                                quote = data.data;
+                                                return $('#quotes').html('<p>' + quote + '</p>');
+                                            });
+                                        };
+
+                                        $('#quoter').on('click', getQuote);
+                                        getQuote();
+                                    })();
+                                </script>
 							</div>
 						</section>
-                    -->
 					<!-- Four -->
                     <!--
 						<section id="four">
