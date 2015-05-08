@@ -821,15 +821,15 @@
 			input[type="reset"].alt:hover,
 			input[type="button"].alt:hover,
 			.button.alt:hover {
-				background-color: #f4f4f4;
-				color: #777 !important;
+				background-color: #5E5E5E;
+				color: #BDBDBD !important;
 			}
 
 			input[type="submit"].alt:active,
 			input[type="reset"].alt:active,
 			input[type="button"].alt:active,
 			.button.alt:active {
-				background-color: #eaeaea;
+				background-color: rgba(0,0,0,0.8);
 			}
 
 			input[type="submit"].alt.icon:before,
@@ -859,7 +859,7 @@
 			input[type="reset"].special:active,
 			input[type="button"].special:active,
 			.button.special:active {
-				background-color: #39c29d;
+				background-color: rgba(0,0,0,0.8);
 			}
 
 		input[type="submit"].disabled, input[type="submit"]:disabled,
