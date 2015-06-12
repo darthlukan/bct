@@ -1,0 +1,56 @@
+<div ng-controller="MainCtrl as main">
+    <div class="jumbotron">
+        <h1>Dice</h1>
+        <p>Select the quantity of each type of dice to roll:</p>
+        <form class="form-horizontal" name="diceForm" novalidate>
+            <div class="form-group">
+                <label for="id_d4">D4:</label>
+                <input type="number" ng-model="main.dice.d4" id="id_d4" min=0 max=10 placeholder=0 />
+            </div>
+            <div class="form-group">
+                <label for="id_d6">D6:</label>
+                <input type="number" ng-model="main.dice.d6" id="id_d6" min=0 max=10 placeholder=0 />
+            </div>
+            <div class="form-group">
+                <label for="id_d8">D8:</label>
+                <input type="number" ng-model="main.dice.d8" id="id_d8" min=0 max=10 placeholder=0 />
+            </div>
+            <div class="form-group">
+                <label for="id_d10">D10:</label>
+                <input type="number" ng-model="main.dice.d10" id="id_d10" min=0 max=10 placeholder=0 />
+            </div>
+            <div class="form-group">
+                <label for="id_d12">D12:</label>
+                <input type="number" ng-model="main.dice.d12" id="id_d12" min=0 max=10 placeholder=0 />
+            </div>
+            <div class="form-group">
+                <label for="id_d20">D20:</label>
+                <input type="number" ng-model="main.dice.d20" id="id_d20" min=0 max=10 placeholder=0 />
+            </div>
+            <br />
+            <div class="form-group">
+                <p>
+                    <span class="btn btn-lg btn-success" ng-click="main.submit(main.dice)">
+                        Roll!
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </span>
+                </p>
+            </div>
+        </form>
+    </div>
+    <div class="marketing results row col-md-12">
+        <h1>Roll Results</h1>
+        <p>Value is a total</p>
+        <table class="table table-hover table-responsive">
+            <tr>
+                <th>Die</th>
+                <th>Value</th>
+            </tr>
+            <tr ng-repeat="(die, val) in main.roll.$$state.value.data.data">
+                <td>{{ die | uppercase }}</td>
+                <td>{{ val }}</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
