@@ -21,7 +21,7 @@ func main() {
 	// Routes
 	app.GET("/ping", pinger)
 	app.GET("/quotes", quoter)
-	app.GET("/dice/roll", roller)
+	app.POST("/dice/roll", roller)
 	app.GET("/", index)
 
 	// Engage
