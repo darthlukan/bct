@@ -15,6 +15,7 @@ func main() {
 	app.Static("/js", "./js")
 	app.Static("/css", "./css")
 	app.Static("/dice", "./dice/app")
+	app.Static("/static", "./static")
 
 	// HTML + Templates
 	app.LoadHTMLGlob("html/*")
